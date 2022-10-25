@@ -42,6 +42,6 @@ npm run build
 
 To Deloy to Github Pages
 npm run build
-git add dist =f
+git add dist -f
 git commit -m "adding dist2"
 git subtree push --prefix dist origin gh-pages
