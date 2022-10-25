@@ -1,91 +1,58 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Check In</RouterLink>
-        <RouterLink to="/about">Report</RouterLink>
-      </nav>
+  <div class="card">
+    <div class="flex flex-column card-container green-container">
+      <div
+        class="flex align-items-center justify-content-center h-4rem bg-indigo-500 font-bold text-white text-3xl border-round m-2"
+      >
+        Kumon Learning Center
+      </div>
+      <div
+        class="flex align-items-center justify-content-center h-4rem bg-white-500 font-bold text-white border-round m-2"
+      >
+        <InputText
+          class="p-inputtext-lg"
+          type="text"
+          placeholder="Student ID"
+          v-model="studentId"
+        />
+      </div>
+      <div
+        class="flex align-items-center justify-content-center h-2rem bg-white-500 font-bold text-white border-round m-1"
+      >
+        <Button>Check in</Button>
+      </div>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
+  <div class="card">
+    <div class="flex flex-column card-container green-container">
+      <div
+        class="flex align-items-center justify-content-center h-4rem bg-white-500 font-bold text-white border-round m-2"
+      ></div>
+    </div>
+  </div>
+  <DataTable :value="products" responsiveLayout="scroll">
+    <Column field="id" header="ID"></Column>
+    <Column field="name" header="Name"></Column>
+    <Column field="checkedInTime" header="Logged In"></Column>
+  </DataTable>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script>
+import { ref, onMounted } from "vue";
+import ProductService from "./service/ProductService";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+export default {
+  setup() {
+    onMounted(() => {
+      productService.value
+        .getProductsSmall()
+        .then((data) => (products.value = data));
+    });
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+    const products = ref();
+    const productService = ref(new ProductService());
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+    return { products, productService };
+  },
+};
+</script>
