@@ -1,0 +1,11 @@
+{
+    "data": [
+        {"id": "1","name": "Khanh Nguyen", "checkedInTime": "8:30 AM"}, 
+        {"id": "2","name": "Tung Hoang", "checkedInTime": "9:30 AM"}, 
+        {"id": "3","name": "Toan Hoang", "checkedInTime": "10:10 AM"},
+        {"id": "4","name": "Long Nguyen", "checkedInTime": "11:30 AM"}
+    ]
+}
+    
+
+
