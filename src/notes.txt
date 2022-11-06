@@ -1,0 +1,31 @@
+    const one = {
+      fruit: "orange",
+      nutrients: {
+        energy: "255kJ",
+        minerals: {
+          name: "calcium",
+        },
+      },
+    };
+
+    const two = {
+      fruit: "orange",
+      nutrients: {
+        energy: "255kJ",
+        minerals: {
+          name: "calcium",
+        },
+      },
+    };
+
+    console.log(JSON.stringify(one) === JSON.stringify(two));
+
+
+
+        // onMounted(() => {
+    //   productService.value
+    //     .getProductsSmall()
+    //     .then((data) => (products.value = data));
+    // });
+    // const products = ref();
+    // const productService = ref(new ProductService());
